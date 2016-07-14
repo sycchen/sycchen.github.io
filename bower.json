@@ -1,0 +1,22 @@
+{
+  "name": "sycchen.github.io",
+  "description": "Steven's Github Pages Website",
+  "main": "index.js",
+  "authors": [
+    "Steven Chen"
+  ],
+  "license": "ISC",
+  "homepage": "sycchen.github.io",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6"
+  }
+}

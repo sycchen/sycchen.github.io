@@ -1,0 +1,8 @@
+#Dev Only Files
+node_modules
+
+#IDEA Files
+.idea
+
+#Specific Files
+TODO.txt
