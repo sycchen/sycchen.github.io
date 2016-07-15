@@ -1,16 +1,28 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="indexApp">
     <head>
-        <title>SyC</title>
+        <title>Steven's Portfolio Website</title>
+        <base href="/">
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+        <!-- CSS -->
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="/app/style.css"/>
 
-        <!-- AngularJS -->
+        <!-- Javascript -->
         <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-route/angular-route.js"></script>
+        <script src="index.js"></script>
     </head>
 
+    <header ng-controller="HeaderController">
+        <div ng-include="'/app/header.html'"></div>
+    </header>
+
     <body>
-        <header ng-include="'/app/header.html'"></header>
+        <div ng-view></div>
     </body>
+
+    <footer>
+        <div ng-include="'/app/footer.html'"></div>
+    </footer>
 </html>

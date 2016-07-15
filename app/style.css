@@ -1,0 +1,72 @@
+.navbar-custom {
+    background: midnightblue;
+    color: white;
+}
+.navbar-custom .navbar-nav > .open > a,
+.navbar-custom .navbar-nav > .active > a {
+    background: royalblue;
+    -webkit-box-shadow: inset 0 3px 9px darkblue;
+    box-shadow: inset 0 3px 9px darkblue;
+}
+.navbar-custom a {
+    color: white;
+}
+
+#footer {
+    padding: 30px;
+}
+
+#footer > .list-inline > li {
+    vertical-align: middle;
+}
+
+.profile {
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    background-color: white;
+}
+.profile:hover {
+    background-color:gray;
+}
+
+.email, .facebook, .skype, .linkedin, .github {
+    width: 48px;
+    height: 48px;
+    display: block;
+}
+
+.email {
+    background-image: url('/app/images/email.png');
+}
+.email:hover {
+    background-image: url('/app/images/email-gray.png');
+}
+
+.facebook {
+    background-image: url('/app/images/facebook.png');
+}
+.facebook:hover {
+    background-image: url('/app/images/facebook-gray.png');
+}
+
+.skype {
+    background-image: url('/app/images/skype.png');
+}
+.skype:hover {
+    background-image: url('/app/images/skype-gray.png');
+}
+
+.linkedin {
+    background-image: url('/app/images/linkedin.png');
+}
+.linkedin:hover {
+    background-image: url('/app/images/linkedin-gray.png');
+}
+
+.github {
+    background-image: url('/app/images/github.png');
+}
+.github:hover {
+    background-image: url('/app/images/github-gray.png');
+}
