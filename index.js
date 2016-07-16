@@ -3,23 +3,31 @@ var myApp = angular.module('indexApp', ['ngRoute']);
 myApp.config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when('/', {
-            templateUrl: '/app/index-body.html',
+            templateUrl: '/app/pages/home.html',
             activeLink: 'Home'
         })
         .when('/projects', {
-            templateUrl: '/app/index-body.html',
+            templateUrl: '/app/pages/projects.html',
+            activeLink: 'Projects'
+        })
+        .when('/projects/project1', {
+            templateUrl: '/app/pages/projects/project1.html',
+            activeLink: 'Projects'
+        })
+        .when('/projects/project2', {
+            templateUrl: '/app/pages/projects/project2.html',
             activeLink: 'Projects'
         })
         .when('/resume', {
-            templateUrl: '/app/index-body.html',
-            activeLink: 'Resume'
+            templateUrl: '/app/pages/resume.html',
+            activeLink: 'Projects'
         })
         .when('/about', {
-            templateUrl: '/app/index-body.html',
+            templateUrl: '/app/pages/about.html',
             activeLink: 'About'
         })
         .when('/contact', {
-            templateUrl: '/app/index-body.html',
+            templateUrl: '/app/pages/contact.html',
             activeLink: 'Contact'
         })
         .otherwise({redirectTo:'/'});
