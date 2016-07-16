@@ -42,7 +42,12 @@
 .navbar-custom .navbar-toggle .icon-bar {
     background-color: #ffffff;
 }
-
+.navbar-custom .dropdown-menu > li{
+    background-color: #ffffff;
+}
+.navbar-custom .dropdown-menu > li+li{
+    border-top: 1px solid #d3d3d3;
+}
 
 #footer {
     padding: 30px;
