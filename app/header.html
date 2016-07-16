@@ -1,15 +1,29 @@
 <nav class="navbar navbar-custom">
+    <div class="profile">
+        <img src="/app/images/header.jpg">
+        <h1 class="collapse" id="indented-header">Welcome to Steven's Domain</h1>
+        <h2 class="collapsed">
+            Welcome to Steven's Domain</h2>
+    </div>
+
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/">
-                <!--<img class="profile" src="/app/images/profile.jpg" alt="Thats Me!">-->
-            </a>
+            <h3 class="navbar-brand collapsed" style="padding-left: 10px; margin: 0px;">{{$route.current.activeLink}}</h3>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-menu">
             <ul class="nav navbar-nav">
-                <li ng-class="{active: $route.current.activeLink == 'home'}"><a href="#/">Home</a></li>
-                <li ng-class="{active: $route.current.activeLink == 'projects'}"><a href="#projects">Projects</a></li>
-                <li ng-class="{active: $route.current.activeLink == 'resume'}"><a href="#resume">Resume</a></li>
-                <li ng-class="{active: $route.current.activeLink == 'about'}"><a href="#about">About</a></li>
-                <li ng-class="{active: $route.current.activeLink == 'contact'}"><a href="#contact">Contact</a></li>
+                <li ng-class="{active: $route.current.activeLink == 'Home'}"><a href="#/">Home</a></li>
+                <li ng-class="{active: $route.current.activeLink == 'Projects'}"><a href="#projects">Projects</a></li>
+                <li ng-class="{active: $route.current.activeLink == 'Resume'}"><a href="#resume">Resume</a></li>
+                <li ng-class="{active: $route.current.activeLink == 'About'}"><a href="#about">About</a></li>
+                <li ng-class="{active: $route.current.activeLink == 'Contact'}"><a href="#contact">Contact</a></li>
             </ul>
         </div>
 

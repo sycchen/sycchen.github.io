@@ -4,23 +4,23 @@ myApp.config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when('/', {
             templateUrl: '/app/index-body.html',
-            activeLink: 'home'
+            activeLink: 'Home'
         })
         .when('/projects', {
             templateUrl: '/app/index-body.html',
-            activeLink: 'projects'
+            activeLink: 'Projects'
         })
         .when('/resume', {
             templateUrl: '/app/index-body.html',
-            activeLink: 'resume'
+            activeLink: 'Resume'
         })
         .when('/about', {
             templateUrl: '/app/index-body.html',
-            activeLink: 'about'
+            activeLink: 'About'
         })
         .when('/contact', {
             templateUrl: '/app/index-body.html',
-            activeLink: 'contact'
+            activeLink: 'Contact'
         })
         .otherwise({redirectTo:'/'});
 }]).controller("HeaderController", ['$scope', '$route', function($scope, $route) {
