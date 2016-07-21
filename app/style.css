@@ -1,3 +1,5 @@
+/* Header */
+
 .navbar-custom {
     background-color: #0e0e3e;
     color: #ffffff;
@@ -49,13 +51,6 @@
     border-top: 1px solid #d3d3d3;
 }
 
-#footer {
-    padding: 30px;
-}
-#footer > .list-inline > li {
-    vertical-align: middle;
-}
-
 .profile {
     width: 100%;
 }
@@ -87,6 +82,16 @@
     padding-left: 10px;
     padding-right: 10px;
     z-index: 1;
+}
+
+
+/* Footer */
+
+#footer {
+    padding: 30px;
+}
+#footer > .list-inline > li {
+    vertical-align: middle;
 }
 
 .email, .facebook, .skype, .linkedin, .github {
@@ -128,4 +133,45 @@
 }
 .github:hover {
     background-image: url('/app/images/github-gray.png');
+}
+
+
+/* About */
+
+.col-md-6, .col-sm-6 {
+    padding: 0;
+}
+
+.boxed-text {
+    display: inline-block;
+    padding: 25px;
+}
+
+#about-me {
+    margin: 0;
+    width: 100%;
+}
+
+#proud-moment {
+    background-color: lightpink;
+}
+
+#hobby-anime {
+    background-color: lightsalmon;
+}
+
+#hobby-reading {
+    background-color: palegoldenrod;
+}
+
+#hobby-gaming {
+    background-color: palegreen;
+}
+
+#hobby-dnd {
+    background-color: paleturquoise;
+}
+
+#hobby-physical {
+    background-color: palevioletred;
 }
