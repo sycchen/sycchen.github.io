@@ -1,5 +1,63 @@
-<div style="height: 500px">
-    <h1>
-        This page will contain contact information!
-    </h1>
+<div ng-controller="ContactController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Hey there! Want to shoot me a message? You can contact me via the following:
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li>Email: <a href="mailto:syc0308@gmail.com">syc0308@gmail.com</a>.</li>
+                <li>Facebook:
+                    <a href="https://www.facebook.com/sycchen92" title="Facebook link"> https://www.facebook.com/sycchen92</a>
+                </li>
+                <li>Skype:
+                    <a href="skype:sycchen92?chat" title="Chat on Skype">sycchen92</a>
+                </li>
+                <li>Linkedin:
+                    <a href="https://www.linkedin.com/in/steven-chen-248bb753" title="Linkedin link"> https://www.linkedin.com/in/steven-chen-248bb753</a>
+                </li>
+                <li>Github:
+                    <a href="https://github.com/sycchen" title="Github link"> https://github.com/sycchen</a>
+                </li>
+            </ul>
+            Alternatively, you can click the buttons on the footer.
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Or use this handy dandy message box.
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-success" role="alert" ng-show="successAlert">
+                <button type="button" class="close" ng-click="hideSuccessAlert()">&times;</button>
+                Your message sent successfully!
+            </div>
+            <div class="alert alert-danger" role="alert" ng-show="errorAlert">
+                <button type="button" class="close" ng-click="hideErrorAlert()">&times;</button>
+                There was a problem sending your message, please recheck everything.
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label for="contactMethod">Contact Method</label>
+                    <select class="form-control" id="contactMethod" ng-model="contactMethod">
+                        <option value="email">Email</option>
+                        <option value="anonymous">Do not reply</option>
+                    </select>
+                </div>
+
+                <div ng-show="contactMethod=='email'" class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" placeholder="Your email" ng-model="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" placeholder="Message" ng-model="message"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-default" ng-click="sendMessage()">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
