@@ -20,7 +20,7 @@ myApp.config(['$routeProvider', function($routeProvider){
         })
         .when('/resume', {
             templateUrl: '/app/pages/resume.html',
-            activeLink: 'Projects'
+            activeLink: 'Resume'
         })
         .when('/about', {
             templateUrl: '/app/pages/about.html',

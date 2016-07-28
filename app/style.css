@@ -3,6 +3,7 @@
 .navbar-custom {
     background-color: #0e0e3e;
     color: #ffffff;
+    margin: 0;
 }
 .navbar-custom a {
     color: #ffffff;
@@ -150,35 +151,46 @@
 #about-me {
     margin: 0;
     width: 100%;
+    color: #ffffff;
 }
 
 #proud-moment {
-    background-color: lightpink;
+    background-color: #df0101;
 }
 
 #hobby-anime {
-    background-color: lightsalmon;
+    background-color: #df7401;
 }
 
 #hobby-reading {
-    background-color: palegoldenrod;
+    background-color: #dba901;
 }
 
 #hobby-gaming {
-    background-color: palegreen;
+    background-color: #04b431;
 }
 
 #hobby-dnd {
-    background-color: paleturquoise;
+    background-color: #0431b4;
 }
 
 #hobby-physical {
-    background-color: palevioletred;
+    background-color: #6a0888;
 }
 
 
 /* Contact */
 
-.panel {
+.alert {
     margin: 20px;
+}
+
+.panel-custom {
+    margin: 20px;
+    border-color: #ddd;
+}
+.panel-custom > .panel-heading {
+    color: #333;
+    background-color: #d9edf7;
+    border-color: #ddd;
 }
