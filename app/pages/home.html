@@ -1,5 +1,19 @@
-<div style="height: 500px">
-    <h1>
-        Home page!
-    </h1>
+<div class="container">
+    <div class="alert alert-info" style="font-size: large;">
+        <p>Hey there!</p>
+        <p>Welcome to my site, where i will show off my personal projects.</p>
+    </div>
+
+    <div>
+        <div class="panel panel-custom" ng-repeat="page in projects">
+            <div>
+                {{page.preview}}
+            </div>
+
+            <div>
+                <p></p>
+                <a href="{{page.href}}"> Continue reading &rarr;</a>
+            </div>
+        </div>
+    </div>
 </div>
