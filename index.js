@@ -1,6 +1,4 @@
-var myApp = angular.module('indexApp', ['ngRoute']);
-
-myApp.config(['$routeProvider', function($routeProvider){
+angular.module('indexApp', ['ngRoute']).config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when('/', {
             templateUrl: '/app/pages/home.html',
@@ -11,8 +9,9 @@ myApp.config(['$routeProvider', function($routeProvider){
             templateUrl: '/app/pages/projects.html',
             activeLink: 'Projects'
         })
-        .when('/projects/project1', {
-            templateUrl: '/app/pages/projects/project1.html',
+        .when('/projects/oneTimeAds', {
+            templateUrl: '/app/pages/projects/one-time-ads.html',
+            controller: 'OneTimeAds',
             activeLink: 'Projects'
         })
         .when('/projects/project2', {
@@ -35,73 +34,25 @@ myApp.config(['$routeProvider', function($routeProvider){
         .otherwise({redirectTo:'/'});
 }]).controller("HeaderController", ['$scope', '$route', function($scope, $route) {
     $scope.$route = $route;
-}]).controller("ContactController", ['$scope', function($scope) {
-    $scope.successAlert = false;
-    $scope.errorAlert = false;
+}]).directive('oneTimeAd', function() {
+    return {
+        link: function(scope, element, attrs) {
+            var clickedAds = readCookie('Clicked_Ads');
 
-    $scope.contactMethod = 'email';
-    $scope.email = '';
-    $scope.message = '';
-
-    $scope.hideSuccessAlert = function() {
-        $scope.successAlert = false;
-    }
-
-    $scope.hideErrorAlert = function() {
-        $scope.errorAlert = false;
-    }
-
-    $scope.sendMessage = function() {
-        var data;
-
-        switch ($scope.contactMethod) {
-            case 'email':
-                data = {
-                    contact: {
-                        email: $scope.email
-                    },
-                    message: $scope.message
-                };
-                break;
-            case 'anonymous':
-                data = {
-                    message: $scope.message
-                };
-                break;
-        }
-
-        // TODO:: Send data to server
-        var jsonPackage = JSON.stringify(data);
-
-        // Wipe data to prevent resending by accident
-        $scope.email = '';
-        $scope.message = '';
-        $scope.successAlert = true;
-    }
-}]).controller("HomeController", ['$scope', function($scope) {
-    $scope.projects = [];
-
-    var getPagePreview = function(link) {
-        return "Insert Preview Here";
-    }
-
-    var init = function() {
-        $.ajax({
-            url: "/app/pages/projects/",
-            success: function(data) {
-                $(data).find("a:contains(.html)").each(function() {
-                    var link = $(this).attr("href");
-                    $scope.projects.push(
-                        {   href: "#" + link.replace(/\/app\/pages(.*)\.html/i,
-                                            function(match, p1, offset, string) {return p1}),
-                            preview: getPagePreview(link)}
-                    );
-                });
-
-                $scope.$apply();
+            if (clickedAds == null || clickedAds.search(element[0].id) < 0) {
+                // Replace comment with html
+                for (const child of element[0].childNodes) {
+                    if (child.nodeType == Node.COMMENT_NODE) {
+                        element[0].innerHTML = child.data;
+                        break;
+                    }
+                }
+            } else {
+                // Delete the element
+                element[0].parentElement.removeChild(element[0]);
+                i--;
             }
-        });
+        }
     };
+});
 
-    init();
-}]);
