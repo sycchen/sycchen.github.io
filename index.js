@@ -9,13 +9,9 @@ angular.module('indexApp', ['ngRoute']).config(['$routeProvider', function($rout
             templateUrl: '/app/pages/projects.html',
             activeLink: 'Projects'
         })
-        .when('/projects/oneTimeAds', {
-            templateUrl: '/app/pages/projects/one-time-ads.html',
-            controller: 'OneTimeAds',
-            activeLink: 'Projects'
-        })
-        .when('/projects/project2', {
-            templateUrl: '/app/pages/projects/project2.html',
+        .when('/projects/:id', {
+            templateUrl: '/app/pages/projects/project-template.html',
+            controller: 'ProjectTemplateController',
             activeLink: 'Projects'
         })
         .when('/resume', {
@@ -32,24 +28,35 @@ angular.module('indexApp', ['ngRoute']).config(['$routeProvider', function($rout
             activeLink: 'Contact'
         })
         .otherwise({redirectTo:'/'});
-}]).controller("HeaderController", ['$scope', '$route', function($scope, $route) {
+}]).controller("HeaderController", ['$scope', '$route', '$http', function($scope, $route, $http) {
     $scope.$route = $route;
+
+    $http.get('/app/data/projects.json').success(function(data){
+        $scope.projects = data;
+    });
 }]).directive('oneTimeAd', function() {
     return {
         link: function(scope, element, attrs) {
-            var clickedAds = readCookie('Clicked_Ads');
-
-            if (clickedAds == null || clickedAds.search(element[0].id) < 0) {
-                // Replace comment with html
+            if (readCookie(cookiePrefix + element[0].id) == null) {
+                // Remove the comments
                 for (const child of element[0].childNodes) {
                     if (child.nodeType == Node.COMMENT_NODE) {
                         element[0].innerHTML = child.data;
+
+                        // Run script code we find
+                        var node = element[0].firstChild;
+                        while (node != null) {
+                            if (node.nodeName == 'SCRIPT') {
+                                eval(node.text);
+                            }
+                            node = node.nextSibling;
+                        }
                         break;
                     }
                 }
             } else {
                 // Delete the element
-                element[0].parentElement.removeChild(element[0]);
+                element[0].parentElement.parentElement.removeChild(element[0].parentElement);
                 i--;
             }
         }

@@ -1,17 +1,133 @@
 <div>
-    <h1>One Time Ads</h1>
+    <p>
+        <b>How does it work?</b>
+        <br>
+        It uses javascript and cookies to determine if the ad should be displayed or not. Using the lifetime of a cookie,
+        you can even control how long until the ad should be shown to the user again. This can all be controlled through
+        some simple configurations.
 
-    <div id="example1" onClick="markAsClicked(this.id)" one-time-ad>
-        <!--
-            <a><img src="/app/images/about/dice.jpg"></a>
-        -->
+        I chose to implement it this way so that future visits to the site will not have to load the Ad which could
+        potentially make your site faster for your frequent viewers.
+    </p>
+    <br>
+</div>
+
+<div>
+    <b>Try It!</b>
+    <br>
+    <p>
+        Below is an ad for you to try it on. Simply click the x button in the top right corner to delete it. Try
+        refreshing the page, you'll find the ad is still gone.
+    </p>
+    <div style="position: relative;">
+        <div id="example_ad_1" one-time-ad>
+            <!--
+                <div id='afscontainer1'></div>
+                <script type="text/javascript" charset="utf-8">
+
+                    var pageOptions = {
+                        "pubId": "pub-9616389000213823", // Make sure this the correct client ID!
+                        "query": "software",
+                        "adPage": 1,
+                        "adtest": "on",
+                        "location": false,
+                        "sellerRatings": false,
+                        "siteLinks": false
+                    };
+
+                    var adblock1 = {
+                        "container": "afscontainer1",
+                        "width": "700",
+                        "number": 1,
+                        "detailedAttribution": false
+                    };
+
+                    _googCsa('ads', pageOptions, adblock1);
+
+                </script>
+            -->
+        </div>
+        <div class="one-time-ad-wrap" onClick="markAsClicked('example_ad_1')"
+             style="position:absolute; top: 0; right: 0; width: 15px; height: 15px; cursor: pointer; cursor: hand;">
+            &#10006</div>
     </div>
+    <br>
+    <p>This button below will delete the cookie, then refresh the page to see the ad again.</p>
+    <button onclick="eraseCookie('One_Time_Ads_example_ad_1')" class="btn btn-default">Reset Cookies</button>
+    <br><br>
+</div>
 
-    <div id="example2" onClick="markAsClicked(this.id)" one-time-ad><!--
-        <a><img src="/app/images/about/dice.jpg"></a>
-    --></div>
+<div>
+    <p>
+        <b>How do I get it?</b>
+        <br>
+        Easy, simply copy paste some code! First you surround your ad in this div.
+        <pre>
+&ltdiv style="position: relative;"&gt
+    &ltdiv id="example_ad_1" class="one-time-ad"&gt
+        &lt!--
+            Your Ad Code Here
+        --&gt
+    &lt/div&gt
+    &ltdiv class="one-time-ad-wrap" onClick="markAsClicked('example_ad_1')"
+         style="position:absolute; top: 0; right: 0; width: 15px; height: 15px; cursor: pointer; cursor: hand;"&gt
+        &#10006&lt/div&gt
+&lt/div>
+        </pre>
+        Please remember to give it a unique ID, there are two instances of "example_ad_1" that should be replaced with
+        a unique name. You can leave the rest untouched. Between the <code>&lt!-- --&gt</code> is where you place the div
+        of your ad.
 
-    <button onclick="alert(readCookie('Clicked_Ads'));">Show Cookies</button>
+        <br><br>
 
-    <button onclick="eraseCookie('Clicked_Ads')">Reset Cookies</button>
+        You'll also need to include this javascript code in your website: <a href="/app/pages/projects/one-time-ads.js">one-time-ads.js</a>.
+        Simply save the file and include it like so:
+        <pre>
+&lthtml&gt
+    ...
+    &lthead&gt
+        ...
+        &ltscript type="text/javascript" src="one-time-ads.js"&gt&lt/script&gt
+        ...
+        </pre>
+
+        There are also an options you can change in the javascript if you choose to. Inside the file you should see
+        <code>var cookieLifetime = null;</code>. You can change the null into any number. This will be the number of
+        days until the cookie is expired and the ad will show again.
+    </p>
+    <br>
+</div>
+
+<div>
+    <p>
+        <b>Getting it to work with AngularJS views</b>
+        <br>
+        Since my site uses AngularJS to perform partial loads, the listener no longer works. To solve this, I created a
+        directive which does the same thing as the listener would.
+        <pre>
+.directive('oneTimeAd', function() {
+    return {
+        link: function(scope, element, attrs) {
+            if (readCookie(cookiePrefix + element[0].id) == null) {
+                // Replace comment with html
+                for (const child of element[0].childNodes) {
+                    if (child.nodeType == Node.COMMENT_NODE) {
+                        element[0].innerHTML = child.data;
+                        break;
+                    }
+                }
+            } else {
+                // Delete the element
+                element[0].parentElement.parentElement.removeChild(element[0].parentElement);
+                i--;
+            }
+        }
+    };
+})
+        </pre>
+        You'll also need to add a tag for the directive to work as shown below.
+        <pre>
+&ltdiv id="example_ad_1" class="one-time-ad" one-time-ad&gt
+        </pre>
+    </p>
 </div>

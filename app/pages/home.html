@@ -5,14 +5,13 @@
     </div>
 
     <div>
-        <div class="panel panel-custom" ng-repeat="page in projects">
-            <div>
-                {{page.preview}}
-            </div>
+        <div class="panel panel-custom" ng-repeat="project in projects">
+            <div style="margin:25px;">
+                <h3>{{project.title}}</h3>
 
-            <div>
-                <p></p>
-                <a href="{{page.href}}"> Continue reading &rarr;</a>
+                <div ng-include="project.preview"></div>
+
+                <a href="#projects/{{project.id}}"> Continue reading &rarr;</a>
             </div>
         </div>
     </div>

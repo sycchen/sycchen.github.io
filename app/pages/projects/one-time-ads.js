@@ -28,36 +28,37 @@ function eraseCookie(name) {
 /* End cookies code */
 
 
-/* markAsClicked
-    - id: ID of the element that was clicked.
+/* Configurations
+    cookiePrefix:   String to be appended before each cookie name.
+    cookieLifetime: Number of days until cookie expires. Null means it will expire when the browser closes.
+ */
+var cookiePrefix = "One_Time_Ads_";
+var cookieLifetime = null;
 
-    This function will append the id of the clicked element onto our list of IDs stored in the cookie Clicked_Ads.
+/* markAsClicked
+    - id: ID of the div which will contain the Ad
+
+    This function will create a cookie so we know to remove this ad on future visits and deletes the whole thing from
+    your page.
  */
 function markAsClicked(id) {
-    var clickedAds = readCookie('Clicked_Ads');
-
-    if (clickedAds == null) {
-        // No clicked ads stored
-        clickedAds = id;
-    } else if (clickedAds.search(new RegExp("(^|,)"+id+"($|,)", "i")) < 0) {
-        // Does not already contain ID
-        clickedAds += "," + id;
-    }
-
-    createCookie('Clicked_Ads',clickedAds);
+    // No clicked ads stored
+    createCookie(cookiePrefix + id, "true", cookieLifetime);
 
     // Remove the Ad
-    var element = document.getElementById(id);
+    var element = document.getElementById(id).parentElement;
     element.parentElement.removeChild(element);
 };
 
+/* oneTimeAdsInit()
+    To be run on page load. It will go through all elements with class name "one-time-ad" and either remove them from
+    the page, or remove the comments hiding the ad.
+ */
 function oneTimeAdsInit() {
     var elements = document.getElementsByClassName("one-time-ad");
 
-    var clickedAds = readCookie('Clicked_Ads');
-
     for (i=0; i < elements.length; i++) {
-        if (clickedAds == null || clickedAds.search(elements[i].id) < 0) {
+        if (readCookie(cookiePrefix + elements[i].id) == null) {
             // Replace comment with html
             for (const child of elements[i].childNodes) {
                 if (child.nodeType == Node.COMMENT_NODE) {
@@ -67,16 +68,15 @@ function oneTimeAdsInit() {
             }
         } else {
             // Delete the element
-            elements[i].parentElement.removeChild(elements[i]);
+            elements[i].parentElement.parentElement.removeChild(elements[i].parentElement);
             i--;
         }
     }
 };
 
-/* Doesn't work for angular */
-//document.onreadystatechange = function () {
-//    if (document.readyState == "interactive") {
-//        oneTimeAdsInit();
-//    }
-//};
-
+/* Simple listener to run oneTimeAdsInit after the DOM is loaded */
+document.onreadystatechange = function () {
+    if (document.readyState == "interactive") {
+        oneTimeAdsInit();
+    }
+};

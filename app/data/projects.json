@@ -1,0 +1,8 @@
+[
+    {
+        "id": "one-time-ads",
+        "title": "One Time Ads",
+        "preview": "/app/pages/projects/one-time-ads-preview.html",
+        "content": "/app/pages/projects/one-time-ads.html"
+    }
+]
