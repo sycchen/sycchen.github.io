@@ -63,6 +63,16 @@ function oneTimeAdsInit() {
             for (child of elements[i].childNodes) {
                 if (child.nodeType == Node.COMMENT_NODE) {
                     elements[i].innerHTML = child.data;
+
+                    // Run script code we find
+                    var node = elements[i].firstChild;
+                    while (node != null) {
+                        if (node.nodeName == 'SCRIPT') {
+                            eval(node.text);
+                        }
+                        node = node.nextSibling;
+                    }
+
                     break;
                 }
             }
