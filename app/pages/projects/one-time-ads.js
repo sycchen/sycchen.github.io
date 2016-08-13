@@ -60,7 +60,7 @@ function oneTimeAdsInit() {
     for (i=0; i < elements.length; i++) {
         if (readCookie(cookiePrefix + elements[i].id) == null) {
             // Replace comment with html
-            for (const child of elements[i].childNodes) {
+            for (child of elements[i].childNodes) {
                 if (child.nodeType == Node.COMMENT_NODE) {
                     elements[i].innerHTML = child.data;
                     break;

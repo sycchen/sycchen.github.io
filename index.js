@@ -39,7 +39,7 @@ angular.module('indexApp', ['ngRoute']).config(['$routeProvider', function($rout
         link: function(scope, element, attrs) {
             if (readCookie(cookiePrefix + element[0].id) == null) {
                 // Remove the comments
-                for (const child of element[0].childNodes) {
+                for (child of element[0].childNodes) {
                     if (child.nodeType == Node.COMMENT_NODE) {
                         element[0].innerHTML = child.data;
 
