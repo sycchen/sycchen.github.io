@@ -57,10 +57,12 @@ function markAsClicked(id) {
 function oneTimeAdsInit() {
     var elements = document.getElementsByClassName("one-time-ad");
 
-    for (i=0; i < elements.length; i++) {
+    for (var i=0; i < elements.length; i++) {
         if (readCookie(cookiePrefix + elements[i].id) == null) {
             // Replace comment with html
-            for (child of elements[i].childNodes) {
+            for (var j=0; i < elements[i].childNodes; i++) {
+                var child = elements[i].childNodes[j];
+
                 if (child.nodeType == Node.COMMENT_NODE) {
                     elements[i].innerHTML = child.data;
 

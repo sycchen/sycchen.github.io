@@ -31,15 +31,15 @@
         </script>
     </head>
 
-    <header ng-controller="HeaderController">
-        <div ng-include="'/app/header.html'"></div>
-    </header>
-
     <body>
-        <div ng-view></div>
-    </body>
+        <header ng-controller="HeaderController">
+            <div ng-include="'/app/header.html'"></div>
+        </header>
 
-    <footer>
-        <div ng-include="'/app/footer.html'"></div>
-    </footer>
+        <div ng-view></div>
+
+        <footer>
+            <div ng-include="'/app/footer.html'"></div>
+        </footer>
+    </body>
 </html>

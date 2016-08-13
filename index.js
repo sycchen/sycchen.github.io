@@ -39,7 +39,9 @@ angular.module('indexApp', ['ngRoute']).config(['$routeProvider', function($rout
         link: function(scope, element, attrs) {
             if (readCookie(cookiePrefix + element[0].id) == null) {
                 // Remove the comments
-                for (child of element[0].childNodes) {
+                for (var i=0; i < element[0].childNodes.length; i++) {
+                    var child = element[0].childNodes[i];
+
                     if (child.nodeType == Node.COMMENT_NODE) {
                         element[0].innerHTML = child.data;
 
@@ -57,7 +59,6 @@ angular.module('indexApp', ['ngRoute']).config(['$routeProvider', function($rout
             } else {
                 // Delete the element
                 element[0].parentElement.parentElement.removeChild(element[0].parentElement);
-                i--;
             }
         }
     };
