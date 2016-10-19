@@ -1,4 +1,6 @@
-angular.module('indexApp', ['ngRoute']).config(['$routeProvider', function($routeProvider){
+angular.module('indexApp', ['ngRoute']).config(['$routeProvider', '$locationProvider', function($routeProvider , $locationProvider){
+    //$locationProvider.html5Mode(true);
+    
     $routeProvider
         .when('/', {
             templateUrl: '/app/pages/home.html',

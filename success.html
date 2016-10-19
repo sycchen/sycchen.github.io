@@ -1,0 +1,6 @@
+<script type="text/javascript">
+	var regex = new RegExp(".*(\\?.*)");
+    var result = regex.exec(window.location.href);
+
+    window.location.href = 'http://localhost:50725/TransChem/Cart/PaymentSuccess' + (result ? result[1] : "");
+</script>
